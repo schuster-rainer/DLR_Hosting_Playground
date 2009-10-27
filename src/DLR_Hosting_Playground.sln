@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+# SharpDevelop 3.1.0.4312
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLR_Hosting_Playground", "DLR_Hosting_Playground/DLR_Hosting_Playground.csproj", "{D8607005-0251-4291-8468-97891D6D5181}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8607005-0251-4291-8468-97891D6D5181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8607005-0251-4291-8468-97891D6D5181}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8607005-0251-4291-8468-97891D6D5181}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8607005-0251-4291-8468-97891D6D5181}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
