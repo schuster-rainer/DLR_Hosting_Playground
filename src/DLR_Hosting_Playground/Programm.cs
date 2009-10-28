@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 namespace DLR_hosting
 {
 	using System.Reflection;
@@ -7,8 +8,7 @@ namespace DLR_hosting
 	using Microsoft.Scripting.Hosting;
 
 	static class Programm
-	{
-		
+	{		
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -49,10 +49,13 @@ namespace DLR_hosting
 			//im init wird eine variable erzeugt. auf diese können wir dann
 			//anschiessend im scope zugreifen. python erzeugt die variablen
 			//in dem scope der mitgegeben wird. das funktioniert in ruby 
-			//noch nicht...
+			//noch nicht perfekt...  (Stand IronRuby 0.91)
+			//Funktionen und Klassen die erzeugt wurden bleiben bestehen, String variablen nicht.
 			ScriptSource initSource = python.CreateScriptSourceFromFile (@"script\init.py");
+			//ScriptSource initSource = ruby.CreateScriptSourceFromFile (@"script\init.rb");
 			CompiledCode initCode = initSource.Compile();
 			initCode.Execute(scope);
+			IEnumerable<string> variables = scope.GetVariableNames();
 
 
 			//... aber in ruby können wir trotzdem die variablen schon bearbeiten.

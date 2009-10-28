@@ -203,7 +203,7 @@
 #
 class OptionParser
   # :stopdoc:
-  RCSID = %w$Id: optparse.rb 18108 2008-07-17 12:30:12Z shyouhei $[1..-1].each {|s| s.freeze}.freeze
+  RCSID = %w$Id: optparse.rb 22467 2009-02-20 11:42:39Z shyouhei $[1..-1].each {|s| s.freeze}.freeze
   Version = (RCSID[1].split('.').collect {|s| s.to_i}.extend(Comparable).freeze if RCSID[1])
   LastModified = (Time.gm(*RCSID[2, 2].join('-').scan(/\d+/).collect {|s| s.to_i}) if RCSID[2])
   Release = RCSID[2]
@@ -630,15 +630,19 @@ class OptionParser
     # method which is called on every option.
     #
     def summarize(*args, &block)
-      list.each do |opt|
+      sum = []
+      list.reverse_each do |opt|
         if opt.respond_to?(:summarize) # perhaps OptionParser::Switch
-          opt.summarize(*args, &block)
+          s = []
+          opt.summarize(*args) {|l| s << l}
+          sum.concat(s.reverse)
         elsif !opt or opt.empty?
-          yield("")
+          sum << ""
         else
-          opt.each(&block)
+          sum.concat(opt.to_a.reverse)
         end
       end
+      sum.reverse_each(&block)
     end
 
     def add_banner(to)  # :nodoc:
@@ -960,7 +964,8 @@ class OptionParser
   # +indent+:: Indentation, defaults to @summary_indent.
   #
   def summarize(to = [], width = @summary_width, max = width - 1, indent = @summary_indent, &blk)
-    visit(:summarize, {}, {}, width, max, indent, &(blk || proc {|l| to << l + $/}))
+    blk ||= proc {|l| to << (l.index($/, -1) ? l : l + $/)}
+    visit(:summarize, {}, {}, width, max, indent, &blk)
     to
   end
 

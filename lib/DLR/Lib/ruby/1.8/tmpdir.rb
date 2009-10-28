@@ -1,7 +1,7 @@
 #
 # tmpdir - retrieve temporary directory path
 #
-# $Id: tmpdir.rb 17799 2008-07-02 09:22:26Z shyouhei $
+# $Id: tmpdir.rb 21774 2009-01-26 02:11:36Z shyouhei $
 #
 
 class Dir
@@ -12,7 +12,7 @@ class Dir
     require 'Win32API'
     CSIDL_LOCAL_APPDATA = 0x001c
     max_pathlen = 260
-    windir = ' '*(max_pathlen+1)
+    windir = "\0"*(max_pathlen+1)
     begin
       getdir = Win32API.new('shell32', 'SHGetFolderPath', 'LLLLP', 'L')
       raise RuntimeError if getdir.call(0, CSIDL_LOCAL_APPDATA, 0, 0, windir) != 0

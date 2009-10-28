@@ -236,7 +236,7 @@
 # Rails, the web application framework, uses ERB to create views.
 #
 class ERB
-  Revision = '$Date: 2008-06-24 16:16:52 +0900 (Tue, 24 Jun 2008) $' 	#'
+  Revision = '$Date: 2009-02-24 02:43:45 +0900 (Tue, 24 Feb 2009) $' 	#'
 
   # Returns revision information for the erb.rb module.
   def self.version
@@ -421,34 +421,6 @@ class ERB
         end
       end
       Scanner.regist_scanner(SimpleScanner2, nil, false)
-
-      class PercentScanner < Scanner # :nodoc:
-	def scan
-	  new_line = true
-          stag_reg = /(.*?)(<%%|<%=|<%#|<%|\n|\z)/
-          etag_reg = /(.*?)(%%>|%>|\n|\z)/
-          scanner = StringScanner.new(@src)
-          while ! scanner.eos?
-	    if new_line && @stag.nil?
-	      if scanner.scan(/%%/)
-		yield('%')
-		new_line = false
-		next
-	      elsif scanner.scan(/%/)
-		yield(PercentLine.new(scanner.scan(/.*?(\n|\z)/).chomp))
-		next
-	      end
-	    end
-	    scanner.scan(@stag ? etag_reg : stag_reg)
-            text = scanner[1]
-            elem = scanner[2]
-            yield(text) unless text.empty?
-            yield(elem) unless elem.empty?
-	    new_line = (elem == "\n")
-          end
-        end
-      end
-      Scanner.regist_scanner(PercentScanner, nil, true)
 
       class ExplicitScanner < Scanner # :nodoc:
 	def scan
