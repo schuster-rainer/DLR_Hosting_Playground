@@ -25,6 +25,7 @@ namespace DLR_hosting
 			//Spezifikationen zu finden unter: http://dlr.codeplex.com/Wiki/View.aspx?title=Docs%20and%20specs
 			var pythonConfigName = Assembly.LoadFile(Path.GetFullPath("IronPython.dll")).GetName();
 			var rubyConfigName = Assembly.LoadFile(Path.GetFullPath("IronRuby.dll")).GetName();
+            var javaScriptConfigName = Assembly.LoadFile(Path.GetFullPath("IronJS.dll")).GetName();
 			var scriptingConfigName = Assembly.LoadFile(Path.GetFullPath("Microsoft.Scripting.dll")).GetName();
 
 			//Für Fehlerbehandlung siehe als Beispiel ScriptCommand.Execute()
@@ -37,6 +38,8 @@ namespace DLR_hosting
 			//Dateierweiterung.
 			ScriptEngine ruby = runtime.GetEngine("IronRuby");
 			ScriptEngine python = runtime.GetEngine("IronPython");
+            //LanguageContext ist noch nicht implementiert
+            //ScriptEngine javascript = runtime.GetEngine("IronJS");
 
 			//Jetzt registrieren wir unsere Instanzen, die wir im Script bearbeiten
 			//wollen für die ScriptEngine in unserem gerade erstellten Scope

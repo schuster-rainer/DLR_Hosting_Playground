@@ -1,8 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-# SharpDevelop 3.1.0.4312
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLR_Hosting_Playground", "DLR_Hosting_Playground/DLR_Hosting_Playground.csproj", "{D8607005-0251-4291-8468-97891D6D5181}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLR_Hosting_Playground", "DLR_Hosting_Playground\DLR_Hosting_Playground.csproj", "{D8607005-0251-4291-8468-97891D6D5181}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
